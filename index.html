@@ -4,25 +4,56 @@
   <meta charset="utf-8" />
   <title>FTE WebGL Quake (Shareware)</title>
   <style>
-    body {
+    html, body {
+      height: 100%;
       margin: 0;
-      padding: 0;
-      background-color: #000;
+      background: #000;
       color: #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
       font-family: sans-serif;
     }
-    canvas {
-      border: 1px solid #000;
+    /* make the canvas visually fill the viewport */
+    #canvas {
+      display: block;
+      width: 100vw;
+      height: 100vh;
+      border: 0;
+      background: #000;
     }
   </style>
 </head>
 <body>
-  <script type="text/javascript">
+  <!-- ftewebgl.js expects a canvas with id="canvas" -->
+  <canvas id="canvas"></canvas>
+
+  <script src="ftewebgl.js"></script>
+
+  <script>
+    (function () {
+      const canvas = document.getElementById('canvas');
+
+      function resizeCanvasToDisplaySize() {
+        const dpr = window.devicePixelRatio || 1;
+        const cssWidth = Math.max(1, window.innerWidth);
+        const cssHeight = Math.max(1, window.innerHeight);
+        const pixWidth = Math.floor(cssWidth * dpr);
+        const pixHeight = Math.floor(cssHeight * dpr);
+
+        if (canvas.width !== pixWidth || canvas.height !== pixHeight) {
+          canvas.width = pixWidth;
+          canvas.height = pixHeight;
+          canvas.style.width = cssWidth  'px';
+          canvas.style.height = cssHeight  'px';
+
+          // If the engine exposes a resize handler in Module or globally, call it here.
+          // Example (uncomment if present): if (Module && typeof Module.onResize === 'function') Module.onResize();
+        }
+      }
+
+      window.addEventListener('resize', resizeCanvasToDisplaySize);
+      window.addEventListener('load', resizeCanvasToDisplaySize);
+      // Also run once now in case the script runs after load
+      resizeCanvasToDisplaySize();
+    })();
   </script>
-  <script type="text/javascript" src="ftewebgl.js"></script>
 </body>
 </html>
