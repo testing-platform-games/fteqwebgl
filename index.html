@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>FTE WebGL Quake Demo</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #000;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: sans-serif;
+    }
+    canvas {
+      border: 2px solid #fff;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="ftewebgl-canvas" width="640" height="480"></canvas>
+  <script type="text/javascript">
+    // Define arguments for the engine. Here, we specify the manifest file.
+    var fte_loader_args = ["-manifest", "manifest.txt"];
+  </script>
+  <!-- The ftewebgl.js script must be loaded after the fte_loader_args variable. -->
+  <script type="text/javascript" src="ftewebgl.js"></script>
+</body>
+</html>
