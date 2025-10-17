@@ -1,0 +1,2 @@
+PACKAGE "id1/pak0.pak" 0x00000000 "id1/pak0.pak"
+PACKAGE "id1/config.cfg" 0x00000000 "id1/config.cfg"
