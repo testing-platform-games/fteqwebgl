@@ -1,0 +1,20 @@
+// FTEQW Manifest File for WebGL
+// This file tells the FTE engine how to load the game assets.
+
+// The version of the manifest format.
+FTEMANIFEST 1
+
+// Define the game this manifest is for. "quake" is the original Quake.
+GAME quake
+
+// Use the standard `id1` directory as the base game directory.
+BASEGAME id1
+
+// Specify the packages to be loaded. The format is:
+// PACKAGE "<logical_path>" <crc32_checksum> "<url_or_file_path>"
+// The crc32_checksum can be set to 0x00000000 for local files.
+PACKAGE "id1/pak0.pak" 0x00000000 "id1/pak0.pak"
+PACKAGE "id1/pak1.pak" 0x00000000 "id1/pak1.pak"
+
+// Specify a configuration file to load.
+PACKAGE "id1/config.cfg" 0x00000000 "id1/config.cfg"
