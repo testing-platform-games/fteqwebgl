@@ -4,54 +4,43 @@
   <meta charset="utf-8" />
   <title>FTE WebGL Quake (Shareware)</title>
   <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-      background: #000;
-      color: #fff;
-      font-family: sans-serif;
-    }
-    /* make the canvas visually fill the viewport */
-    #canvas {
-      display: block;
-      width: 100vw;
-      height: 100vh;
-      border: 0;
-      background: #000;
-    }
+    html, body { height: 100%; margin: 0; background: #000; color: #fff; font-family: sans-serif; }
+    #canvas { display: block; width: 100vw; height: 100vh; border: 0; background: #000; }
   </style>
 </head>
 <body>
-  <!-- ftewebgl.js expects a canvas with id="canvas" -->
   <canvas id="canvas"></canvas>
 
+  <script>
+    var Module = {
+      preloadedFiles: [
+        "/cdn/quake/id1/pak0.pak",
+        "/cdn/quake/id1/config.cfg"
+      ],
+      arguments: ["-game", "id1"],
+      canvas: (function() { return document.getElementById('canvas'); })()
+    };
+  </script>
   <script src="ftewebgl.js"></script>
 
   <script>
     (function () {
       const canvas = document.getElementById('canvas');
-
       function resizeCanvasToDisplaySize() {
         const dpr = window.devicePixelRatio || 1;
         const cssWidth = Math.max(1, window.innerWidth);
         const cssHeight = Math.max(1, window.innerHeight);
         const pixWidth = Math.floor(cssWidth * dpr);
         const pixHeight = Math.floor(cssHeight * dpr);
-
         if (canvas.width !== pixWidth || canvas.height !== pixHeight) {
           canvas.width = pixWidth;
           canvas.height = pixHeight;
-          canvas.style.width = cssWidth  'px';
-          canvas.style.height = cssHeight  'px';
-
-          // If the engine exposes a resize handler in Module or globally, call it here.
-          // Example (uncomment if present): if (Module && typeof Module.onResize === 'function') Module.onResize();
+          canvas.style.width = cssWidth + 'px';
+          canvas.style.height = cssHeight + 'px';
         }
       }
-
       window.addEventListener('resize', resizeCanvasToDisplaySize);
       window.addEventListener('load', resizeCanvasToDisplaySize);
-      // Also run once now in case the script runs after load
       resizeCanvasToDisplaySize();
     })();
   </script>
